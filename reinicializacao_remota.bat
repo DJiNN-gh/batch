@@ -12,9 +12,9 @@ echo Insira o nome do usuario:
 set /p usuario_str=
 
 REM Adquirindo privilegio de administrador para a reinicializacao
-net use \\192.168.1.1 /user:Administrador *
+net use \\%end_str% /user:%usuario_str% *
 
-REM Passando parametros de reinicializacao (-r), tempo (-t), maquina remota (-m) e comentario (-c)
-shutdown /r /t 60 /m \\192.168.1.1 /c "Reinicialização remota forçada pelo administrador (60s)"
+REM Passando parametros de reinicializacao (-r), tempo regressivo(-t), maquina remota (-m) e comentario (-c)
+shutdown /r /t 60 /m \\%end_str% /c "Reinicialização remota forçada pelo administrador (60s)"
 
 exit
