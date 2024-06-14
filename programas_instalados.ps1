@@ -1,0 +1,1 @@
+get-itemproperty hklm:\software\microsoft\windows\currentversion\uninstall\* | sort-object -property displayname | select-object displayname, publisher, installdate | format-table -autosize | out-file -filepath "c:\users\ti-gfle\onedrive - eletron eventos locacao de equipamentos ltda\documentacao\relatorios\novo.txt"
