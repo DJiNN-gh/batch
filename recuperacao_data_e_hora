@@ -1,0 +1,41 @@
+REM Script para recuperacao da sincronizacao automatica do relogio do Windows
+REM Limpando dados da conexao de rede
+arp -d * 
+nbtstat -R
+nbtstat -RR
+ipconfig /flushdns
+ipconfig /registerdns
+ipconfig /release
+ipconfig /renew
+
+REM Limpeza e reinicializacaodos dos dados da API Winsock
+netsh winsock reset
+netsh winhttp reset proxy
+netsh winsock reset catalog
+netsh winsock reset all
+netsh interface ip delete arpcache
+REM Reinicializacao das regras de firewall
+netsh advfirewall reset
+netsh branchcache reset
+REM Limpeza e reinicializacao dos dados de endereco IP
+netsh int ip reset all
+netsh int ip reset c:\Temp\resetlog.txt
+netsh int ipv4 reset all
+netsh int ipv6 reset all
+netsh int ip reset all
+netsh int httpstunnel reset all
+netsh int isatap reset all
+netsh int portproxy reset all
+netsh int tcp reset all
+netsh int teredo reset all
+net localgroup administradores localservice /add
+fsutil resource setautoreset true C:\
+netsh winhttp import proxy source=ie
+sc config DcomLaunch start =auto
+
+sc config wuauserv start= auto
+sc config bits start= auto 
+sc config cryptsvc start= auto 
+sc config trustedinstaller start= auto
+
+exit
